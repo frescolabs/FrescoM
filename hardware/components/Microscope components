@@ -1,0 +1,82 @@
+Objective part
+
+Option 1.
+CCM1-G01 30mm Cage mounted aluminium Mirror
+S1TM06 SM1 to 6 mm Lens Cell adapter
+C392TME-A lens (f = 2.75 mm. NA = 0.64
+ER2-P4 extension rods to connect the objective to the filter cube
+
+Option 2.
+CCM1-G01 30mm Cage mounted aluminium Mirror
+Objective canibalised from your old microscope (NON INFINITY CORRECTED!)
+Appropriate SM1 adapter (e.g. RMS to SM1) – will depend on the objective lens
+ER2-P4 extension rods to connect the objective to the filter cube
+
+Option 1 will require a bit of fiddling with the position of the camera lens. 
+Option 1 will also require appropriate focusing system. 
+With option 2 we simply screw the objective lens up and down 
+(NB! This affects the size of the sample a little).
+
+
+Filter cube part
+Option 1 (expensive)
+Thorlabs C6W 4-way mounting cube
+Thorlabs B3C/M – Rotatable cover plate
+Thorlabs MF469-35 GFP excitation filter
+Thorlabs MF525-39 GFP emission filter
+Thorlabs MD498 Di filter R band = 452-490
+Thorlabs FFM1 cage dichroic filter mount
+Two Thorlabs SM1L05 short tubes to connect the excitation and emission filters to the C6W cube
+
+Option2 (cheap)
+Thorlabs C6W 4-way mounting cube
+Thorlabs B3C/M – Rotatable cover plate
+Filter cube cannibalised from an old microscope and glued to B3C/M using glue gun
+
+
+The rest of the microscope
+Thorlabs SM1L05 lens tube
+Thorlabs AC254-100-A camera lens
+Thorlabs SML35 3.50’’ lens tube
+Thorlabs SM1A9 adapter with external C-mount thread and external SM1 thread
+Thorlabs SM1T2 coupler
+
+Camera
+DCV/BFS-U3-16S2M-CS Blackfly camera  NB! This camera heats a lot and requires a heatsink
+or to be switched of between frame acquisitions (ideally both). 
+Otherwise its really good — lightwave, cheap (350-370 pounds) and pretty good quality.
+
+LED
+Option 1 (Thorlabs)
+Thorlabs mount LED (e.g. M490L4)
+Thorlabs T-cube LED driver (LEDD1B)
+Thorlabs SM1L35 tube
+Thorlabs SM1T2 coupler
+Thorlabs ACL2520U lens (F=20mm)
+
+You will need to spend some time to properly position the lens
+
+Option 2 (Cairns)
+
+MonoLED light source
+
+Both these options do great job but are quite expensive (around £500). Here is option 3 for electronics lovers:
+
+Option 3
+
+Arduino uno/mega http://uk.rs-online.com/web/p/processor-microcontroller-development-kits/7154081/   (2 for monitor+controller configuration)
+
+AD5171 digital potentiometer http://uk.rs-online.com/web/p/digital-potentiometers/8099301/
+
+Surface Mount (SMT) Board SOT Epoxy Glass Double-Sided 23.5 x 13.5 x 1.5mm FR4 https://uk.rs-online.com/web/p/surface-mount-smt-to-through-hole-adapter-boards/7288838/?searchTerm=re906&relevancy-data=636F3D3126696E3D4931384E53656172636847656E65726963266C753D656E266D6D3D6D61746368616C6C7061727469616C26706D3D5E2E2A2426706F3D31333326736E3D592673743D43415443485F414C4C5F44454641554C542673633D592677633D4E4F4E45267573743D7265393036267374613D726539303626&dym=re90
+
+RCD24 LED driver http://uk.rs-online.com/web/p/led-drivers/6689882/
+
+2X 4.7 KOhm resistors
+
+Power supply
+
+LED (1-3 W) blue LED. E.g – https://futureeden.co.uk/products/3w-royal-blue-led-epiled-440-450nm-with-star-pcb-heatsink
+
+
+If you don’t need to regulate the brightness of the LED you do not need the potentiometer. We are still working on the best way to mount these LEDs but the idea is to glue it to a Thorlab cap (SM1CP2M) and screw this onto CP02. You will also need a lens to focus the LED.
