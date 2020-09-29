@@ -59,10 +59,6 @@ void loop() {
   if (Serial.available() > 0) {
     String line = Serial.readString();
     Command command = frescoParser->parse(line);
-    Serial.print(command.name);
-    Serial.print(command.parameter0);
-    Serial.print(command.parameter1);
-    Serial.print(command.parameter2);
     frescoXYZ->perform(command);
   }
 }
