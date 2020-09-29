@@ -4,6 +4,8 @@
 
 1. run python virt env setup: python 3.6
 
+'''python3 -m venv env'''
+
 '''source env/bin/activate'''
 
 2. install pip packages
