@@ -3,10 +3,16 @@
 ## Set up the project
 
 1. run python virt env setup: python 3.6
-'''virtualenv -p python3 myenv'''
+
+'''source env/bin/activate'''
 
 2. install pip packages
-'''pip -r requirements.txt'''
+
+'''pip install -r requirements.txt '''
+
+3. run
+
+'''python ui/fresco_ui.py'''
 
 ## Set up in the UI
 
