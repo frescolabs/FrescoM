@@ -2,9 +2,11 @@
 
 ## Set up the project
 
-1. run python virt env setup //TODO
+1. run python virt env setup: python 3.6
+'''virtualenv -p python3 myenv'''
 
-2. install pip packages //TODO
+2. install pip packages
+'''pip -r requirements.txt'''
 
 ## Set up in the UI
 
