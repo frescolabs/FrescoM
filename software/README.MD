@@ -2,7 +2,7 @@
 
 ## Set up the project
 
-1. run python virt env setup: python 3.6
+1. run python virt env setup: python 3.7
 
 ```python3 -m venv env```
 
