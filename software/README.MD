@@ -4,17 +4,25 @@
 
 1. run python virt env setup: python 3.6
 
-'''python3 -m venv env'''
+```python3 -m venv env```
 
-'''source env/bin/activate'''
+```source env/bin/activate```
 
-2. install pip packages
+2. install pip packages for your platform:
 
-'''pip install -r requirements.txt '''
+```pip install -r mac.txt```
+
+or
+
+```pip install -r windows.txt```
+
+or 
+
+```pip install -r linux.txt```
 
 3. run
 
-'''python ui/fresco_ui.py'''
+```python main.py```
 
 ## Set up in the UI
 
