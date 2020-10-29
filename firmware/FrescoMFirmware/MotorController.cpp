@@ -4,11 +4,21 @@
 #define CURRENT_POSITION_KEY 1
 
 MotorController::MotorController(FrescoMotor* motor, 
-                                 EndStopper* stopper) {
+                                 EndStopper* stopper,
+                                 bool goToZeroDirection) {
   this->motor = motor;
   this->stopper = stopper;
   this->axisLength = -1;
   this->currentPosition = -1;
+  this->goToZeroDirection = goToZeroDirection;
+  
+  if (goToZeroDirection) {
+    this->rebound = REBOUND;
+  }
+  else {
+    this->rebound = REBOUND * -1;
+  }
+  
 }
 
 void MotorController::goToPosition(long position) {
@@ -40,11 +50,11 @@ void MotorController::goDelta(long stepsNumber) {
 }
 
 void MotorController::goToZero() {
-  this->motor->setDirection(true);
+  this->motor->setDirection(this->goToZeroDirection);
   while (!stopper->getState()) {
     motor->step();
   }
-  goDelta(REBOUND);
+  goDelta(this->rebound);
   this->setCurrentPositionAsGlobalZero();
 }
 
@@ -55,7 +65,7 @@ void MotorController::rememberStartPosition() {
     motor->step();
     stepsCounter++;
   }
-  goDelta(REBOUND);
+  goDelta(this->rebound);
   axisStart = stepsCounter;
   this->setCurrentPositionAsGlobalZero();
 }
@@ -67,7 +77,7 @@ void MotorController::rememberEndPosition() {
     motor->step();
     stepsCounter++;
   }
-  goDelta(REBOUND);
+  goDelta(this->rebound);
   axisEnd = stepsCounter;
   this->setCurrentPositionAsGlobalZero();
 }

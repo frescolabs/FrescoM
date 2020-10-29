@@ -20,6 +20,9 @@
  *  RememberTopLeft -> Remember top left
  *  RememberBottomRight -> Remember bottom right
  *  GetTopLeftBottomRightCoordinates -> Send coordinates for the plate
+ *  ManifoldZero -> Go to Zero for Manifold Z
+ *  DeltaPump 0 -100 -> Move pump # 0 for -100 steps
+ *  ManifoldDelta 100 -> Moves manifold
  *  
  */
 
@@ -31,6 +34,9 @@ enum CommandType {
   SetTopLeft,
   SetBottomRight,
   GetTopLeftBottomRightCoordinates,
+  ManifoldDelta,
+  ManifoldZero,
+  DeltaPump,
   Unknown
 };
 
