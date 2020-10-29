@@ -64,9 +64,18 @@ Command Parser::parse(String line) {
   else if (command.name.compareTo("GetTopLeftBottomRightCoordinates") == 0) {
     command.type = GetTopLeftBottomRightCoordinates;
   }
+  else if (command.name.compareTo("ManifoldZero") == 0) {
+    command.type = ManifoldZero;
+  }
+  else if (command.name.compareTo("DeltaPump") == 0) {
+    command.type = DeltaPump;
+  }
+  else if (command.name.compareTo("ManifoldDelta") == 0) {
+    command.type = ManifoldDelta;
+  }
   else {
     command.type = Unknown;
   }
-
+  
   return command;
 }

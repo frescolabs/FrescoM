@@ -4,6 +4,7 @@
 #include "MotorController.h"
 #include "Command.h"
 #include "Point.h"
+#include "Manifold.h"
 
 // Contains all motor controllers
 class FrescoXYZ {
@@ -13,6 +14,7 @@ class FrescoXYZ {
     MotorController* xMotorController;
     MotorController* yMotorController;
     MotorController* zMotorController;
+    Manifold* manifold;
     
     long xLeftPostition;
     long xRightPosition;
@@ -30,7 +32,8 @@ class FrescoXYZ {
   
   FrescoXYZ(MotorController* xMotorController, 
             MotorController* yMotorController, 
-            MotorController* zMotorController);
+            MotorController* zMotorController,
+            Manifold* manifold);
 
   void setPosition(long x, 
                    long y, 

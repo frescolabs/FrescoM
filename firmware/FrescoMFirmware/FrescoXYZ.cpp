@@ -9,11 +9,13 @@
 
 FrescoXYZ::FrescoXYZ(MotorController* xMotorController, 
                      MotorController* yMotorController, 
-                     MotorController* zMotorController) {
+                     MotorController* zMotorController,
+                     Manifold* manifold) {
                       
   this->xMotorController = xMotorController;
   this->yMotorController = yMotorController;
   this->zMotorController = zMotorController;
+  this->manifold = manifold;
       
   this->xLeftPostition = -1;
   this->xRightPosition = -1;
@@ -40,9 +42,9 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   }
 
   void FrescoXYZ::goToZero() {
+    zMotorController->goToZero();
     xMotorController->goToZero();
     yMotorController->goToZero();
-    zMotorController->goToZero();
   }
 
   long FrescoXYZ::getXLength() {
@@ -68,6 +70,14 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   }
   
   void FrescoXYZ::perform(Command command) {
+    
+    if (command.type == ManifoldDelta) {
+        this->manifold->goDeltaZ(command.parameter0.toInt());
+    }
+    else if (command.type == ManifoldZero) {
+        this->manifold->goToZeroVerticalZ();
+    }
+    
     switch (command.type) {
       case GoToZero:
         this->goToZero();
@@ -96,6 +106,15 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         Point topLeft = this->restoreTopLeftPosition();
         Point bottomRight = this->restoreBottomRightPosition();
         Serial.print("Response " + String(topLeft.x) + " " + String(topLeft.y) + " " + String(bottomRight.x) + " " + String(bottomRight.y) + "\n");
+        break;
+      case ManifoldZero:
+        this->manifold->goToZeroVerticalZ();
+        break;
+      case ManifoldDelta:
+        this->manifold->goDeltaZ(command.parameter0.toInt());
+        break;
+      case DeltaPump:
+        this->manifold->deltaPump(command.parameter0.toInt(), command.parameter1.toInt());
         break;
     }
   }

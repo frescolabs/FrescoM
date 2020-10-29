@@ -15,11 +15,14 @@ class MotorController {
     long axisEnd;
     long axisLength;
     long currentPosition;
+    bool goToZeroDirection;
+    long rebound;
   
   public:
   
     MotorController(FrescoMotor* motor, 
-                    EndStopper* stopper);
+                    EndStopper* stopper,
+                    bool goToZeroDirection);
     
     void goToPosition(long position);
     void goDelta(long stepsNumber);
