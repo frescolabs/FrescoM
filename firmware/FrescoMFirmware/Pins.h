@@ -4,6 +4,8 @@
 #define EN 13
 #define NUM_MOTORS 12
 
+#define LEDW 46
+
 // CNC1 
 #define XS1 5
 #define YS1 6

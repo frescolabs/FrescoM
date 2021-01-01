@@ -11,6 +11,7 @@ Manifold::Manifold(MotorController* zMotorController,
 }
 
 Manifold::deltaPump(int pumpNumber, int delta) {
+  Serial.print("Manifold to pump \n");
   pumps[pumpNumber]->goDelta(delta);
 }
 

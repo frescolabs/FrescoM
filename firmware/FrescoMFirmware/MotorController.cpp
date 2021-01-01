@@ -31,6 +31,7 @@ void MotorController::goToPosition(long position) {
 }
 
 void MotorController::goDelta(long stepsNumber) {
+  Serial.print("Go delta in controller \n");
   if (stepsNumber > 0) {
     this->motor->setDirection(true);
   } else {

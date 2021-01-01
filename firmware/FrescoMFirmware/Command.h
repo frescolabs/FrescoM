@@ -23,6 +23,7 @@
  *  ManifoldZero -> Go to Zero for Manifold Z
  *  DeltaPump 0 -100 -> Move pump # 0 for -100 steps
  *  ManifoldDelta 100 -> Moves manifold
+ *  SwitchLedW 1 -> switch on and off top white LED
  *  
  */
 
@@ -37,6 +38,7 @@ enum CommandType {
   ManifoldDelta,
   ManifoldZero,
   DeltaPump,
+  SwitchLedW,
   Unknown
 };
 

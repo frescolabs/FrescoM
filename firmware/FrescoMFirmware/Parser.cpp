@@ -68,10 +68,14 @@ Command Parser::parse(String line) {
     command.type = ManifoldZero;
   }
   else if (command.name.compareTo("DeltaPump") == 0) {
+    Serial.print("Parsed Delta pump");
     command.type = DeltaPump;
   }
   else if (command.name.compareTo("ManifoldDelta") == 0) {
     command.type = ManifoldDelta;
+  }
+  else if (command.name.compareTo("SwitchLedW") == 0) {
+    command.type = SwitchLedW;
   }
   else {
     command.type = Unknown;
