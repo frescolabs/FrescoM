@@ -21,7 +21,9 @@ void setupPinsModeEndSetEnabled() {
   }
 
   pinMode(EN, OUTPUT);
+  pinMode(LEDW, OUTPUT);
   digitalWrite(EN, LOW);
+  digitalWrite(LEDW, LOW);
 }
 
 void setupSerial() {
@@ -54,10 +56,10 @@ void setup() {
   
   MotorController* manifoldZController = new MotorController(manifoldZMotor, manifoldZStopper, false);
 
-  FrescoMotor* pump0Motor = new FrescoMotor(XS3, XD3);
+  FrescoMotor* pump0Motor = new FrescoMotor(XS2, XD2);
   MotorController* pump0 = new MotorController(pump0Motor, NULL, true);
 
-  FrescoMotor* pump1Motor = new FrescoMotor(YS3, YD3);
+  FrescoMotor* pump1Motor = new FrescoMotor(YS2, YD2);
   MotorController* pump1 = new MotorController(pump1Motor, NULL, true);
   
   MotorController *pumps[] = {pump0, pump1};
