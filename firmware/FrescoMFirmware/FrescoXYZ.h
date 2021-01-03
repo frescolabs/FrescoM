@@ -5,6 +5,8 @@
 #include "Command.h"
 #include "Point.h"
 #include "Manifold.h"
+#include "MOSFETLED.h"
+#include "DriverLED.h"
 
 // Contains all motor controllers
 class FrescoXYZ {
@@ -15,6 +17,8 @@ class FrescoXYZ {
     MotorController* yMotorController;
     MotorController* zMotorController;
     Manifold* manifold;
+    MOSFETLED* whiteLed;
+    DriverLED* blueLed;
     
     long xLeftPostition;
     long xRightPosition;
@@ -33,7 +37,9 @@ class FrescoXYZ {
   FrescoXYZ(MotorController* xMotorController, 
             MotorController* yMotorController, 
             MotorController* zMotorController,
-            Manifold* manifold);
+            Manifold* manifold,
+            MOSFETLED* whiteLed,
+            DriverLED* blueLed);
 
   void setPosition(long x, 
                    long y, 

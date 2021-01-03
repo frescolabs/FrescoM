@@ -24,6 +24,7 @@
  *  DeltaPump 0 -100 -> Move pump # 0 for -100 steps
  *  ManifoldDelta 100 -> Moves manifold
  *  SwitchLedW 1 -> switch on and off top white LED
+ *  SwitchLedB 1 -> switch on and off blue LED for microscope
  *  
  */
 
@@ -39,6 +40,7 @@ enum CommandType {
   ManifoldZero,
   DeltaPump,
   SwitchLedW,
+  SwitchLedB,
   Unknown
 };
 

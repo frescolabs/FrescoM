@@ -11,12 +11,16 @@
 FrescoXYZ::FrescoXYZ(MotorController* xMotorController, 
                      MotorController* yMotorController, 
                      MotorController* zMotorController,
-                     Manifold* manifold) {
+                     Manifold* manifold,
+                     MOSFETLED* whiteLed,
+                     DriverLED* blueLed) {
                       
   this->xMotorController = xMotorController;
   this->yMotorController = yMotorController;
   this->zMotorController = zMotorController;
   this->manifold = manifold;
+  this->whiteLed = whiteLed;
+  this->blueLed = blueLed;
       
   this->xLeftPostition = -1;
   this->xRightPosition = -1;
@@ -86,7 +90,6 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         this->manifold->goToZeroVerticalZ();
     }
     else if (command.type == DeltaPump) {
-        Serial.print("Delta pump \n");
         this->manifold->deltaPump(command.parameter0.toInt(), command.parameter1.toInt());
     }
     else if (command.type == SetPosition) {
@@ -115,12 +118,13 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         this->manifold->goToZeroVerticalZ();
     }
     else if (command.type == SwitchLedW) {
-        if (command.parameter0.toInt() == 1) {
-            digitalWrite(LEDW, HIGH);
-        }
-        else {
-            digitalWrite(LEDW, LOW);
-        }
+        this->whiteLed->set(command.parameter0.toInt() == 1);
+    }
+    else if (command.type == SwitchLedB) {
+        this->blueLed->set(command.parameter0.toInt() == 1);
+    }
+    else if (command.type == Unknown) {
+      Serial.print("Unknown command");
     }
     
   }
