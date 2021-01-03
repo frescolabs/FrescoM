@@ -24,6 +24,8 @@ https://www.amazon.co.uk/Screw-250mm-Printer-Threaded-Linear/dp/B06WRN1DQS/ref=s
 7. 12 Nema 17 Driver A4988 (+- 13 GBP): 
 https://www.amazon.co.uk/Stepper-Stepstick-Headsink-Arduino-Machines/dp/B07B9ZKST7/ref=sr_1_20?dchild=1&keywords=nema+17+driver&qid=1584744170&sr=8-20
 
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/Stepper_driver.jpg?raw=true)
+
 8. 12 Mini Limit Switch 3 pins (+- 8 GBP):
 https://www.amazon.co.uk/KingYH-Momentary-Instrument-Communications-Electronic/dp/B07YDFBS5X/ref=sr_1_33?crid=2AEO1981JUHD&dchild=1&keywords=arduino+limit+switch&qid=1584744462&sprefix=arduino+limit+swit%2Caps%2C160&sr=8-33
 
