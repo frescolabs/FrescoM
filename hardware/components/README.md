@@ -4,6 +4,8 @@ List of components for the Hardware part
 1. 12  Nema 17 Stepper Motors (+- 22 GBP). 
 https://www.amazon.co.uk/Stepper-13N-cm-Holding-Printer-craftsman168/dp/B07H5C5943/ref=sr_1_10?keywords=nema+17&qid=1584743740&sr=8-10
 
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/Nema_17.jpg?raw=true)
+
 2. Two 400 mm Linear Guide Rails (+- 44 GBP):
 https://www.amazon.co.uk/Miniature-Linear-LML12H-Printer-Machine/dp/B07KK83Y8B/ref=sr_1_11?keywords=3d+printer+rails&qid=1584743812&sr=8-11
 
