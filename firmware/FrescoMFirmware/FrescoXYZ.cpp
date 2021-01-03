@@ -124,7 +124,7 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         this->blueLed->set(command.parameter0.toInt() == 1);
     }
     else if (command.type == Unknown) {
-      Serial.print("Unknown command");
+      Serial.print("Unknown command\n");
     }
     
   }
