@@ -58,4 +58,7 @@ https://www.amazon.co.uk/sourcing-map-Lathe-Round-Length/dp/B07KT3MXV6/ref=sr_1_
 17. 1 X IRF520 MOSFET (+- 3 GBP)
 https://www.amazon.co.uk/HCMODU0083-IRF520-MOSFET-Driver-Module/dp/B012ATHAN8
 
+18. 1 X RCD-24 Constant Current LED Driver (6 pins)
+https://uk.rs-online.com/web/p/led-driver-ics/0472222/
+
 
