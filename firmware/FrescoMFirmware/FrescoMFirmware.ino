@@ -6,8 +6,9 @@
 #include "FrescoXYZ.h"
 #include "MotorController.h"
 #include "Parser.h"
+#include "Manifold.h"
 
-int stepPins[] = {XS1,YS1,ZS1,AS1, XS2, YS2, ZS2, AS2, XS3, YS3, ZS3, AS3};
+int stepPins[] = {XS1, YS1, ZS1, AS1, XS2, YS2, ZS2, AS2, XS3, YS3, ZS3, AS3};
 int dirPins[] = {XD1, YD1, ZD1, AD1, XD2, YD2, ZD2, AD2, XD3, YD3, ZD3, AD3};
 int endStopperPins[] = {ES1, ES2, ES3, ES4, ES5, ES6, ES7, ES8, ES9, ES10, ES11, ES12};
 
@@ -18,12 +19,11 @@ void setupPinsModeEndSetEnabled() {
     pinMode(dirPins[i], OUTPUT);
     pinMode(endStopperPins[i], INPUT);
   }
-  
-  pinMode(X_DIR, OUTPUT); pinMode(X_STP, OUTPUT);
-  pinMode(Y_DIR, OUTPUT); pinMode(Y_STP, OUTPUT);
 
   pinMode(EN, OUTPUT);
+  pinMode(LEDW, OUTPUT);
   digitalWrite(EN, LOW);
+  digitalWrite(LEDW, LOW);
 }
 
 void setupSerial() {
@@ -47,11 +47,34 @@ void setup() {
   EndStopper* yStopper = new EndStopper(ES2);
   EndStopper* zStopper = new EndStopper(ES3);
 
-  MotorController* xMotorController = new MotorController(xMotor, xStopper);
-  MotorController* yMotorController = new MotorController(yMotor, yStopper);
-  MotorController* zMotorController = new MotorController(zMotor, zStopper);
+  MotorController* xMotorController = new MotorController(xMotor, xStopper, true);
+  MotorController* yMotorController = new MotorController(yMotor, yStopper, true);
+  MotorController* zMotorController = new MotorController(zMotor, zStopper, true);
 
-  frescoXYZ = new FrescoXYZ(xMotorController, yMotorController, zMotorController);
+  FrescoMotor* manifoldZMotor = new FrescoMotor(AS1, AD1);
+  EndStopper* manifoldZStopper = new EndStopper(ES4);
+  
+  MotorController* manifoldZController = new MotorController(manifoldZMotor, manifoldZStopper, false);
+
+  FrescoMotor* pump0Motor = new FrescoMotor(XS2, XD2);
+  MotorController* pump0 = new MotorController(pump0Motor, NULL, true);
+
+  FrescoMotor* pump1Motor = new FrescoMotor(YS2, YD2);
+  MotorController* pump1 = new MotorController(pump1Motor, NULL, true);
+  
+  MotorController *pumps[] = {pump0, pump1};
+  Manifold* manifold = new Manifold(manifoldZController, 2, pumps);
+
+  MOSFETLED *whiteLed = new MOSFETLED(LEDW);
+  DriverLED *blueLed = new DriverLED(LEDB);
+
+  frescoXYZ = new FrescoXYZ(xMotorController, 
+                            yMotorController, 
+                            zMotorController, 
+                            manifold, 
+                            whiteLed,
+                            blueLed);
+                            
   frescoParser = new Parser();
 }
 

@@ -20,6 +20,11 @@
  *  RememberTopLeft -> Remember top left
  *  RememberBottomRight -> Remember bottom right
  *  GetTopLeftBottomRightCoordinates -> Send coordinates for the plate
+ *  ManifoldZero -> Go to Zero for Manifold Z
+ *  DeltaPump 0 -100 -> Move pump # 0 for -100 steps
+ *  ManifoldDelta 100 -> Moves manifold
+ *  SwitchLedW 1 -> switch on and off top white LED
+ *  SwitchLedB 1 -> switch on and off blue LED for microscope
  *  
  */
 
@@ -31,6 +36,11 @@ enum CommandType {
   SetTopLeft,
   SetBottomRight,
   GetTopLeftBottomRightCoordinates,
+  ManifoldDelta,
+  ManifoldZero,
+  DeltaPump,
+  SwitchLedW,
+  SwitchLedB,
   Unknown
 };
 

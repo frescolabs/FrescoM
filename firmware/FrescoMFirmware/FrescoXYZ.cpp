@@ -1,6 +1,7 @@
 #include "FrescoXYZ.h"    
 #include "Point.h"
 #include <EEPROM.h>
+#include "Pins.h"
 
 #define BOTTOM_RIGHT_X_KEY 1
 #define BOTTOM_RIGHT_Y_KEY 5
@@ -9,11 +10,17 @@
 
 FrescoXYZ::FrescoXYZ(MotorController* xMotorController, 
                      MotorController* yMotorController, 
-                     MotorController* zMotorController) {
+                     MotorController* zMotorController,
+                     Manifold* manifold,
+                     MOSFETLED* whiteLed,
+                     DriverLED* blueLed) {
                       
   this->xMotorController = xMotorController;
   this->yMotorController = yMotorController;
   this->zMotorController = zMotorController;
+  this->manifold = manifold;
+  this->whiteLed = whiteLed;
+  this->blueLed = blueLed;
       
   this->xLeftPostition = -1;
   this->xRightPosition = -1;
@@ -40,9 +47,9 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   }
 
   void FrescoXYZ::goToZero() {
+    zMotorController->goToZero();
     xMotorController->goToZero();
     yMotorController->goToZero();
-    zMotorController->goToZero();
   }
 
   long FrescoXYZ::getXLength() {
@@ -68,36 +75,58 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   }
   
   void FrescoXYZ::perform(Command command) {
-    switch (command.type) {
-      case GoToZero:
+
+    // For some reason switch doesn't work here after some cases, so had to rewrite to if / else  
+    if (command.type == GoToZero) {
         this->goToZero();
-        break;
-      case GoToZeroVerticalZ:
+    }
+    else if (command.type == GoToZeroVerticalZ) {
         this->zMotorController->goToZero();
-        break;
-      case SetPosition:
+    }
+    else if (command.type == ManifoldDelta) {
+        this->manifold->goDeltaZ(command.parameter0.toInt());
+    }
+    else if (command.type == ManifoldZero) {
+        this->manifold->goToZeroVerticalZ();
+    }
+    else if (command.type == DeltaPump) {
+        this->manifold->deltaPump(command.parameter0.toInt(), command.parameter1.toInt());
+    }
+    else if (command.type == SetPosition) {
         this->setPosition(command.parameter0.toInt(), command.parameter1.toInt(), command.parameter2.toInt());
-        break;
-      case MoveDelta:
+    }
+    else if (command.type == MoveDelta) {
         this->moveDelta(command.parameter0.toInt(), command.parameter1.toInt(), command.parameter2.toInt());
-        break;
-      case SetBottomRight:
+    }
+    else if (command.type == SetBottomRight) {
         this->xMotorController->rememberStartPosition();
         this->yMotorController->rememberEndPosition();
         this->saveBottomRightPosition();
-        break;
-      case SetTopLeft:
+    }
+    else if (command.type == SetTopLeft) {
         this->xMotorController->rememberEndPosition();
         this->yMotorController->rememberStartPosition();
         this->saveTopLeftPosition();
-        break;
-      case GetTopLeftBottomRightCoordinates:
+    }
+    else if (command.type == GetTopLeftBottomRightCoordinates) {
         // TODO: Move serial response to another class
         Point topLeft = this->restoreTopLeftPosition();
         Point bottomRight = this->restoreBottomRightPosition();
         Serial.print("Response " + String(topLeft.x) + " " + String(topLeft.y) + " " + String(bottomRight.x) + " " + String(bottomRight.y) + "\n");
-        break;
     }
+    else if (command.type == ManifoldZero) {
+        this->manifold->goToZeroVerticalZ();
+    }
+    else if (command.type == SwitchLedW) {
+        this->whiteLed->set(command.parameter0.toInt() == 1);
+    }
+    else if (command.type == SwitchLedB) {
+        this->blueLed->set(command.parameter0.toInt() == 1);
+    }
+    else if (command.type == Unknown) {
+      Serial.print("Unknown command");
+    }
+    
   }
 
   void FrescoXYZ::saveBottomRightPosition() {
