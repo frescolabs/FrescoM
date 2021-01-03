@@ -11,3 +11,5 @@ Steps to reproduce the project:
 Please file an issue if somthing is not clear.
 
 ![alt frescoa](https://github.com/frescolabs/FrescoM/blob/master/media/FrescoA_image.png?raw=true)
+
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/FrescoA_photo.jpg?raw=true)
