@@ -31,3 +31,5 @@ or
 2. Align bottom right well with the objective and run "Remember bottom right position" command
 
 3. Run sync plate coordinates button
+
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/FrescoA_ux.png?raw=true)
