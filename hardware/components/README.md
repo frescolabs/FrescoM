@@ -30,6 +30,8 @@ https://www.amazon.co.uk/KingYH-Momentary-Instrument-Communications-Electronic/d
 9. One Arduino Mega (+- 42 GBP):
 https://www.amazon.co.uk/ARDUINO-MEGA-2560-REV3-A000067/dp/B0046AMGW0/ref=sr_1_3?dchild=1&keywords=Arduino+Mega&qid=1584746050&sr=8-3
 
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/Arduino_image.jpg?raw=true)
+
 10. M3x8/10/15mm Screw and Nut Kit (+- 5 GBP):
 https://www.amazon.co.uk/CONNEX-DP8500055-Machine-Screw-Nut/dp/B00B22VHPC/ref=sr_1_5?keywords=screw+and+nuts&qid=1584746128&sr=8-5
 
