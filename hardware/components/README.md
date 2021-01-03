@@ -36,6 +36,8 @@ https://www.amazon.co.uk/CONNEX-DP8500055-Machine-Screw-Nut/dp/B00B22VHPC/ref=sr
 11. Three CNC shield 
 https://www.amazon.co.uk/ARCELI-Engraver-Printer-Expansion-Arduino/dp/B07CQRPFFW/ref=sr_1_7?dchild=1&keywords=CNC+shield&qid=1593538726&sr=8-7
 
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/CNC.jpg?raw=true)
+
 12. 8mm mounted bearing
 https://www.amazon.co.uk/DealMux-FL08-Self-aligning-Flange-Bearing/dp/B01EZZP2QC/ref=sr_1_54?dchild=1&keywords=8mm+bearing+mounted&qid=1593539169&sr=8-54
 
