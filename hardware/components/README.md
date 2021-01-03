@@ -54,3 +54,8 @@ https://www.amazon.co.uk/s?k=LM8uu&ref=nb_sb_noss_2
 
 16. 8mm rods
 https://www.amazon.co.uk/sourcing-map-Lathe-Round-Length/dp/B07KT3MXV6/ref=sr_1_5?dchild=1&keywords=8mm+rod&qid=1593539702&sr=8-5
+
+17. 1 X IRF520 MOSFET (+- 3 GBP)
+https://www.amazon.co.uk/HCMODU0083-IRF520-MOSFET-Driver-Module/dp/B012ATHAN8
+
+
