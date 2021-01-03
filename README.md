@@ -9,3 +9,5 @@ Steps to reproduce the project:
 5. Install software from software folder
 
 Please file an issue if somthing is not clear.
+
+![alt frescoa](https://github.com/frescolabs/FrescoM/blob/master/media/FrescoA_image.png?raw=true)
