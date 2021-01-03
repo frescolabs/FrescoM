@@ -65,7 +65,16 @@ void setup() {
   MotorController *pumps[] = {pump0, pump1};
   Manifold* manifold = new Manifold(manifoldZController, 2, pumps);
 
-  frescoXYZ = new FrescoXYZ(xMotorController, yMotorController, zMotorController, manifold);
+  MOSFETLED *whiteLed = new MOSFETLED(LEDW);
+  DriverLED *blueLed = new DriverLED(LEDB);
+
+  frescoXYZ = new FrescoXYZ(xMotorController, 
+                            yMotorController, 
+                            zMotorController, 
+                            manifold, 
+                            whiteLed,
+                            blueLed);
+                            
   frescoParser = new Parser();
 }
 

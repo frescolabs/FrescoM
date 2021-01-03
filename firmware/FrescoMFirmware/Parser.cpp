@@ -77,6 +77,9 @@ Command Parser::parse(String line) {
   else if (command.name.compareTo("SwitchLedW") == 0) {
     command.type = SwitchLedW;
   }
+  else if (command.name.compareTo("SwitchLedB") == 0) {
+    command.type = SwitchLedB;
+  }
   else {
     command.type = Unknown;
   }
