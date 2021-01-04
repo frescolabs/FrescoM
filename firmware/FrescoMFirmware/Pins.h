@@ -39,8 +39,8 @@
 #define AD3 41
 
 // End stops
-#define ES1 22 // return this back for the new pcb
-#define ES2 24 // return this back for the new pcb
+#define ES1 22 
+#define ES2 24 
 #define ES3 26
 #define ES4 28
 #define ES5 30
