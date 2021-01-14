@@ -7,7 +7,7 @@ import _thread
 class MacroStepsManualController(Frame):
 
     def __init__(self, master, fresco_xyz: FrescoXYZ):
-        super().__init__(master=master, height=200, width=500)
+        super().__init__(master=master, height=240, width=500)
         self.fresco_xyz = fresco_xyz
         self.init_ui()
 
@@ -30,8 +30,20 @@ class MacroStepsManualController(Frame):
         z_down_button = tk.Button(self, text="↓↓", command=self.move_z_macro_down)
         z_down_button.place(x=220, y=80)
 
-        go_to_zero_button = tk.Button(self, text='Go to zero', command=self.go_to_zero)
+        manifold_up_button = tk.Button(self, text="↑↑", command=self.move_manifold_up)
+        manifold_up_button.place(x=280, y=0)
+
+        manifold_down_button = tk.Button(self, text="↓↓", command=self.move_manifold_down)
+        manifold_down_button.place(x=280, y=80)
+
+        go_to_zero_button = tk.Button(self, text='Go to zero ZXY', command=self.go_to_zero)
         go_to_zero_button.place(x=50, y=120)
+
+        go_to_zero_manifold = tk.Button(self, text='Go to zero Manifold', command=self.go_to_zero_manifold)
+        go_to_zero_manifold.place(x=50, y=160)
+
+        go_to_zero_z_button = tk.Button(self, text='Go to zero Z', command=self.go_to_zero_z)
+        go_to_zero_z_button.place(x=50, y=200)
 
     def move_x_macro_up(self):
         _thread.start_new_thread(self.fresco_xyz.delta, (300, 0, 0, 0.5))
@@ -53,3 +65,15 @@ class MacroStepsManualController(Frame):
 
     def go_to_zero(self):
         _thread.start_new_thread(self.fresco_xyz.go_to_zero, (8,))
+
+    def go_to_zero_manifold(self):
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_manifold, (2,))
+
+    def go_to_zero_z(self):
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_z, (2,))
+
+    def move_manifold_up(self):
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-300, 0.5))
+
+    def move_manifold_down(self):
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (300, 0.5))

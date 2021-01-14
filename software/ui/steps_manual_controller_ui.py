@@ -12,7 +12,7 @@ class StepsManualController(Frame):
         self.init_ui()
 
     def init_ui(self):
-        xyz_label = Label(self, text='XYZ Control')
+        xyz_label = Label(self, text='XYZ Control, Manifold')
         xyz_label.place(x=10, y=10)
 
         x_up_button = tk.Button(self, text="↑", command=self.move_x_up)
@@ -33,6 +33,12 @@ class StepsManualController(Frame):
         z_down_button = tk.Button(self, text="↓", command=self.move_z_down)
         z_down_button.place(x=220, y=130)
 
+        manifold_up_button = tk.Button(self, text="↑", command=self.move_manifold_up)
+        manifold_up_button.place(x=280, y=50)
+
+        manifold_down_button = tk.Button(self, text="↓", command=self.move_manifold_down)
+        manifold_down_button.place(x=280, y=130)
+
     def move_x_up(self):
         _thread.start_new_thread(self.fresco_xyz.delta, (10, 0, 0, 0.5))
 
@@ -50,5 +56,11 @@ class StepsManualController(Frame):
 
     def move_z_down(self):
         _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, 5, 0.5))
+
+    def move_manifold_up(self):
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-100, 0.5))
+
+    def move_manifold_down(self):
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (100, 0.5))
 
 

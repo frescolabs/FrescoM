@@ -61,9 +61,27 @@ void setup() {
 
   FrescoMotor* pump1Motor = new FrescoMotor(YS2, YD2);
   MotorController* pump1 = new MotorController(pump1Motor, NULL, true);
+
+  FrescoMotor* pump2Motor = new FrescoMotor(ZS2, ZD2);
+  MotorController* pump2 = new MotorController(pump2Motor, NULL, true);
+
+  FrescoMotor* pump3Motor = new FrescoMotor(AS2, AD2);
+  MotorController* pump3 = new MotorController(pump3Motor, NULL, true);
+
+  FrescoMotor* pump4Motor = new FrescoMotor(XS3, XD3);
+  MotorController* pump4 = new MotorController(pump4Motor, NULL, true);
+
+  FrescoMotor* pump5Motor = new FrescoMotor(YS3, YD3);
+  MotorController* pump5 = new MotorController(pump5Motor, NULL, true);
+
+  FrescoMotor* pump6Motor = new FrescoMotor(ZS3, ZD3);
+  MotorController* pump6 = new MotorController(pump6Motor, NULL, true);
+
+  FrescoMotor* pump7Motor = new FrescoMotor(AS3, AD3);
+  MotorController* pump7 = new MotorController(pump7Motor, NULL, true);
   
-  MotorController *pumps[] = {pump0, pump1};
-  Manifold* manifold = new Manifold(manifoldZController, 2, pumps);
+  MotorController *pumps[] = {pump0, pump1, pump2, pump3, pump4, pump5, pump6, pump7};
+  Manifold* manifold = new Manifold(manifoldZController, 8, pumps);
 
   MOSFETLED *whiteLed = new MOSFETLED(LEDW);
   DriverLED *blueLed = new DriverLED(LEDB);

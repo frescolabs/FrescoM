@@ -7,12 +7,38 @@ class FrescoXYZ:
     # TODO: async methods instead of waitTime
 
     def __init__(self):
-        self.xyzSerial = Serial('/dev/cu.usbmodem14201', 250000)
+        self.xyzSerial = Serial('/dev/cu.usbmodem14301', 250000)
         self.topLeftPosition = (-1, -1)
         self.bottomRightPosition = (-1, -1)
 
+    def white_led_switch(self, state):
+        message = None
+        if state:
+            message = bytearray('SwitchLedW 1' + '\n', 'utf8')
+        else:
+            message = bytearray('SwitchLedW 0' + '\n', 'utf8')
+        self.xyzSerial.write(message)
+
+    def blue_led_switch(self, state):
+        message = None
+        if state:
+            message = bytearray('SwitchLedB 1' + '\n', 'utf8')
+        else:
+            message = bytearray('SwitchLedB 0' + '\n', 'utf8')
+        self.xyzSerial.write(message)
+
     def delta(self, x, y, z, wait_time):
         message = bytearray('Delta ' + str(x) + ' ' + str(y) + ' ' + str(z) + '\n', 'utf8')
+        self.xyzSerial.write(message)
+        time.sleep(wait_time)
+
+    def delta_pump(self, pump_index, delta, wait_time):
+        message = bytearray('DeltaPump ' + str(pump_index) + ' ' + str(delta) + '\n', 'utf8')
+        self.xyzSerial.write(message)
+        time.sleep(wait_time)
+
+    def manifold_delta(self, delta, wait_time):
+        message = bytearray('ManifoldDelta ' + str(delta) + '\n', 'utf8')
         self.xyzSerial.write(message)
         time.sleep(wait_time)
 
@@ -23,6 +49,11 @@ class FrescoXYZ:
 
     def go_to_zero(self, wait_time):
         message = bytearray('Zero ' + '\n', 'utf8')
+        self.xyzSerial.write(message)
+        time.sleep(wait_time)
+
+    def go_to_zero_manifold(self, wait_time):
+        message = bytearray('ManifoldZero ' + '\n', 'utf8')
         self.xyzSerial.write(message)
         time.sleep(wait_time)
 
