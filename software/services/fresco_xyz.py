@@ -7,7 +7,7 @@ class FrescoXYZ:
     # TODO: async methods instead of waitTime
 
     def __init__(self):
-        self.xyzSerial = Serial('/dev/cu.usbmodem14101', 250000)
+        self.xyzSerial = Serial('/dev/cu.usbmodem14301', 250000)
         self.topLeftPosition = (-1, -1)
         self.bottomRightPosition = (-1, -1)
 

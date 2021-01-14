@@ -1,3 +1,4 @@
 -r requirements.txt
 ./libs/mac/spinnaker_python-2.0.0.147-cp36-cp36m-macosx_10_9_x86_64.whl; python_version == '3.6'
-./libs/mac/spinnaker_python-2.0.0.147-cp37-cp37m-macosx_10_9_x86_64.whl; python_version == '3.7'
+./libs/mac/spinnaker_python-2.2.0.48-cp37-cp37m-macosx_10_9_x86_64.whl; python_version == '3.7'
+./libs/mac/spinnaker_python-2.2.0.48-cp38-cp38-macosx_10_14_x86_64.whl; python_version == '3.8'
