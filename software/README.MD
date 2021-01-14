@@ -8,9 +8,9 @@ run script from "software" folder to install conda environment and some librarie
 
 ```bash condainstall.sh```
 
-```conda activate fresco-env  ``
+```conda activate fresco-env  ```
 
-2. install pip packages for your platform:
+install pip packages for your platform:
 
 ```pip install -r mac.txt```
 
