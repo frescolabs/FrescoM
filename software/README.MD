@@ -2,11 +2,13 @@
 
 ## Set up the project
 
-1. run python virt env setup: python 3.7
+download anaconda and install conda
 
-```python3 -m venv env```
+run script from "software" folder to install conda environment and some libraries: python 3.8
 
-```source env/bin/activate```
+```bash condainstall.sh```
+
+```conda activate fresco-env  ``
 
 2. install pip packages for your platform:
 
@@ -20,7 +22,7 @@ or
 
 ```pip install -r linux.txt```
 
-3. run
+run
 
 ```python main.py```
 
