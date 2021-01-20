@@ -1,4 +1,5 @@
-from serial import Serial
+from services.serial_service import SerialService
+from services.services import global_services
 import time
 
 
@@ -7,78 +8,82 @@ class FrescoXYZ:
     # TODO: async methods instead of waitTime
 
     def __init__(self):
-        self.xyzSerial = Serial('/dev/cu.usbmodem14301', 250000)
+        self.serial_service = global_services.serial_service
+        print('serial service inited')
         self.topLeftPosition = (-1, -1)
         self.bottomRightPosition = (-1, -1)
+
+    def send(self, message: str):
+        self.serial_service.current_connection.send_message_line(message)
 
     def white_led_switch(self, state):
         message = None
         if state:
-            message = bytearray('SwitchLedW 1' + '\n', 'utf8')
+            message = 'SwitchLedW 1'
         else:
-            message = bytearray('SwitchLedW 0' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+            message = 'SwitchLedW 0'
+        self.send(message)
 
     def blue_led_switch(self, state):
         message = None
         if state:
-            message = bytearray('SwitchLedB 1' + '\n', 'utf8')
+            message ='SwitchLedB 1'
         else:
-            message = bytearray('SwitchLedB 0' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+            message = 'SwitchLedB 0'
+        self.send(message)
 
     def delta(self, x, y, z, wait_time):
-        message = bytearray('Delta ' + str(x) + ' ' + str(y) + ' ' + str(z) + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'Delta ' + str(x) + ' ' + str(y) + ' ' + str(z)
+        self.send(message)
         time.sleep(wait_time)
 
     def delta_pump(self, pump_index, delta, wait_time):
-        message = bytearray('DeltaPump ' + str(pump_index) + ' ' + str(delta) + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'DeltaPump ' + str(pump_index) + ' ' + str(delta)
+        self.send(message)
         time.sleep(wait_time)
 
     def manifold_delta(self, delta, wait_time):
-        message = bytearray('ManifoldDelta ' + str(delta) + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'ManifoldDelta ' + str(delta)
+        self.send(message)
         time.sleep(wait_time)
 
     def set_position(self, x, y, z, wait_time):
-        message = bytearray('SetPosition ' + str(x) + ' ' + str(y) + ' ' + str(z) + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'SetPosition ' + str(x) + ' ' + str(y) + ' ' + str(z)
+        self.send(message)
         time.sleep(wait_time)
 
     def go_to_zero(self, wait_time):
-        message = bytearray('Zero ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'Zero '
+        self.send(message)
         time.sleep(wait_time)
 
     def go_to_zero_manifold(self, wait_time):
-        message = bytearray('ManifoldZero ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'ManifoldZero '
+        self.send(message)
         time.sleep(wait_time)
 
     def go_to_zero_z(self, wait_time):
-        message = bytearray('VerticalZero ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'VerticalZero '
+        self.send(message)
         time.sleep(wait_time)
 
     def remember_top_left_position(self, wait_time):
         self.go_to_zero_z(4)
-        message = bytearray('RememberTopLeft ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'RememberTopLeft '
+        self.send(message)
         time.sleep(wait_time)
 
     def remember_bottom_right_position(self, wait_time):
         self.go_to_zero_z(4)
-        message = bytearray('RememberBottomRight ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'RememberBottomRight '
+        self.send(message)
         time.sleep(wait_time)
 
     def update_top_left_bottom_right(self, wait_time):
-        message = bytearray('GetTopLeftBottomRightCoordinates ' + '\n', 'utf8')
-        self.xyzSerial.write(message)
+        message = 'GetTopLeftBottomRightCoordinates '
+        self.send(message)
         time.sleep(wait_time)
-        coordinates_response = self.xyzSerial.read_all().decode('utf-8')
+        coordinates_response = self.serial_service.current_connection.read_message()
         tokens = coordinates_response.split(' ')
         self.topLeftPosition = (int(tokens[1]), int(tokens[2]))
         self.bottomRightPosition = (int(tokens[3]), int(tokens[4]))

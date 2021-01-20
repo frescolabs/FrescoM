@@ -15,13 +15,13 @@ class AutoFocus(Frame):
 
     def init_ui(self):
         auto_focus_label = Label(self, text='Auto focus')
-        auto_focus_label.place(x=10, y=0)
+        auto_focus_label.grid(column=0, row=0, ipadx=2, pady=2, sticky=tk.W)
 
         auto_focus_button = tk.Button(self, text='Focus', command=self.auto_focus)
-        auto_focus_button.place(x=50, y=30)
+        auto_focus_button.grid(column=0, row=1, ipadx=2, pady=2, sticky=tk.W)
 
         remember_anchor_focus_button = tk.Button(self, text='Remember anchor focus')
-        remember_anchor_focus_button.place(x=50, y=70)
+        remember_anchor_focus_button.grid(column=0, row=2, ipadx=2, pady=2, sticky=tk.W)
 
     def auto_focus(self):
         _thread.start_new_thread(self.z_camera.focus_on_current_object, ())

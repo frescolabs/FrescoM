@@ -13,31 +13,31 @@ class StepsManualController(Frame):
 
     def init_ui(self):
         xyz_label = Label(self, text='XYZ Control, Manifold')
-        xyz_label.place(x=10, y=10)
+        xyz_label.grid(sticky=tk.W, pady=4, padx=5, columnspan=4)
 
         x_up_button = tk.Button(self, text="↑", command=self.move_x_up)
-        x_up_button.place(x=100, y=50)
+        x_up_button.grid(row=1, column=1)
 
         x_down_button = tk.Button(self, text="↓", command=self.move_x_down)
-        x_down_button.place(x=100, y=130)
+        x_down_button.grid(row=3, column=1)
 
         y_left_button = tk.Button(self, text="←", command=self.move_y_left)
-        y_left_button.place(x=50, y=90)
+        y_left_button.grid(row=2, column=0)
 
         y_right_button = tk.Button(self, text="→", command=self.move_y_right)
-        y_right_button.place(x=150, y=90)
+        y_right_button.grid(row=2, column=2)
 
         z_up_button = tk.Button(self, text="↑", command=self.move_z_up)
-        z_up_button.place(x=220, y=50)
+        z_up_button.grid(row=1, column=3)
 
         z_down_button = tk.Button(self, text="↓", command=self.move_z_down)
-        z_down_button.place(x=220, y=130)
+        z_down_button.grid(row=3, column=3)
 
         manifold_up_button = tk.Button(self, text="↑", command=self.move_manifold_up)
-        manifold_up_button.place(x=280, y=50)
+        manifold_up_button.grid(row=1, column=4)
 
         manifold_down_button = tk.Button(self, text="↓", command=self.move_manifold_down)
-        manifold_down_button.place(x=280, y=130)
+        manifold_down_button.grid(row=3, column=4)
 
     def move_x_up(self):
         _thread.start_new_thread(self.fresco_xyz.delta, (10, 0, 0, 0.5))

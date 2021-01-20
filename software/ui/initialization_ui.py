@@ -14,25 +14,25 @@ class Initialization(Frame):
 
     def init_ui(self):
         initialization_label = Label(self, text='Initialization')
-        initialization_label.place(x=10, y=0)
+        initialization_label.grid(column=0, row=0, ipadx=2, pady=2, sticky=tk.W)
 
         remember_top_left_position_button = tk.Button(self,
                                                       text='Remember top left position',
                                                       command=self.remember_top_left_position)
-        remember_top_left_position_button.place(x=50, y=20)
+        remember_top_left_position_button.grid(column=0, row=1, ipadx=2, pady=2, sticky=tk.W)
 
         remember_bottom_right_position_button = tk.Button(self,
                                                           text='Remember bottom right position',
                                                           command=self.remember_bottom_right_position)
-        remember_bottom_right_position_button.place(x=50, y=60)
+        remember_bottom_right_position_button.grid(column=0, row=2, ipadx=2, pady=2, sticky=tk.W)
 
         sync_plate_coordinates_button = tk.Button(self,
                                                   text="Sync plate coordinates",
                                                   command=self.sync_plate_coordinates)
-        sync_plate_coordinates_button.place(x=50, y=100)
+        sync_plate_coordinates_button.grid(column=0, row=3, ipadx=2, pady=2, sticky=tk.W)
 
         self.plate_coordinates_label = Label(self, text='(0, 0) , (0, 0)')
-        self.plate_coordinates_label.place(x=50, y=140)
+        self.plate_coordinates_label.grid(column=0, row=4, ipadx=2, pady=2, sticky=tk.W)
 
     def remember_top_left_position(self):
         _thread.start_new_thread(self.fresco_xyz.remember_top_left_position, (5,))

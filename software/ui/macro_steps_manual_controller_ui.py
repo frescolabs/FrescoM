@@ -13,37 +13,37 @@ class MacroStepsManualController(Frame):
 
     def init_ui(self):
         x_macro_up_button = tk.Button(self, text="↑↑", command=self.move_x_macro_up)
-        x_macro_up_button.place(x=100, y=0)
+        x_macro_up_button.grid(row=1, column=1)
 
         x_macro_down_button = tk.Button(self, text="↓↓", command=self.move_x_macro_down)
-        x_macro_down_button.place(x=100, y=80)
+        x_macro_down_button.grid(row=3, column=1)
 
         y_macro_left_button = tk.Button(self, text="←←", command=self.move_y_macro_left)
-        y_macro_left_button.place(x=50, y=40)
+        y_macro_left_button.grid(row=2, column=0)
 
         y_macro_right_button = tk.Button(self, text="→→", command=self.move_y_macro_right)
-        y_macro_right_button.place(x=150, y=40)
+        y_macro_right_button.grid(row=2, column=2)
 
         z_up_button = tk.Button(self, text="↑↑", command=self.move_z_macro_up)
-        z_up_button.place(x=220, y=0)
+        z_up_button.grid(row=1, column=3)
 
         z_down_button = tk.Button(self, text="↓↓", command=self.move_z_macro_down)
-        z_down_button.place(x=220, y=80)
+        z_down_button.grid(row=3, column=3)
 
         manifold_up_button = tk.Button(self, text="↑↑", command=self.move_manifold_up)
-        manifold_up_button.place(x=280, y=0)
+        manifold_up_button.grid(row=1, column=4)
 
         manifold_down_button = tk.Button(self, text="↓↓", command=self.move_manifold_down)
-        manifold_down_button.place(x=280, y=80)
+        manifold_down_button.grid(row=3, column=4)
 
         go_to_zero_button = tk.Button(self, text='Go to zero ZXY', command=self.go_to_zero)
-        go_to_zero_button.place(x=50, y=120)
+        go_to_zero_button.grid(sticky=tk.W, row=4, column=0, columnspan=4)
 
         go_to_zero_manifold = tk.Button(self, text='Go to zero Manifold', command=self.go_to_zero_manifold)
-        go_to_zero_manifold.place(x=50, y=160)
+        go_to_zero_manifold.grid(sticky=tk.W, row=5, column=0, columnspan=4)
 
         go_to_zero_z_button = tk.Button(self, text='Go to zero Z', command=self.go_to_zero_z)
-        go_to_zero_z_button.place(x=50, y=200)
+        go_to_zero_z_button.grid(sticky=tk.W, row=6, column=0, columnspan=4)
 
     def move_x_macro_up(self):
         _thread.start_new_thread(self.fresco_xyz.delta, (300, 0, 0, 0.5))
