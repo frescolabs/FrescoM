@@ -3,6 +3,7 @@ from tkinter.ttk import Frame, Label
 from PIL import Image, ImageTk
 from services.segmentation_service import SegmentationService
 
+
 class SaveImage(Frame):
 
     def __init__(self, master, image):

@@ -21,31 +21,31 @@ class Functions(Frame):
 
     def init_ui(self):
         xyz_label = Label(self, text='Functions')
-        xyz_label.place(x=10, y=0)
+        xyz_label.grid(column=0, row=0, ipadx=2, pady=2, sticky=tk.W)
 
         set_global_position_button = tk.Button(self, text='Set Global Position',
                                                command=self.open_set_global_position_dialog)
-        set_global_position_button.place(x=50, y=20)
+        set_global_position_button.grid(column=0, row=1, ipadx=2, pady=2, sticky=tk.W)
 
         save_current_image_button = tk.Button(self, text='Save current image', command=self.save_current_image)
-        save_current_image_button.place(x=50, y=60)
+        save_current_image_button.grid(column=0, row=2, ipadx=2, pady=2, sticky=tk.W)
 
         all_wells_photo_button = tk.Button(self, text='All wells photo')
-        all_wells_photo_button.place(x=50, y=100)
+        all_wells_photo_button.grid(column=0, row=3, ipadx=2, pady=2, sticky=tk.W)
 
         segment_current_image_button = tk.Button(self, text='Segment current image')
-        segment_current_image_button.place(x=50, y=140)
+        segment_current_image_button.grid(column=0, row=4, ipadx=2, pady=2, sticky=tk.W)
 
         white_led_button = tk.Button(self, text='White LED on / off',
                                      command=self.switch_white_led)
-        white_led_button.place(x=50, y=180)
+        white_led_button.grid(column=0, row=5, ipadx=2, pady=2, sticky=tk.W)
 
         blue_led_button = tk.Button(self, text='Blue LED on / off',
                                     command=self.switch_blue_led)
-        blue_led_button.place(x=50, y=220)
+        blue_led_button.grid(column=0, row=6, ipadx=2, pady=2, sticky=tk.W)
 
         pumps_button = tk.Button(self, text='Pumps', command=self.open_pumps)
-        pumps_button.place(x=50, y=260)
+        pumps_button.grid(column=0, row=7, ipadx=2, pady=2, sticky=tk.W)
 
     def switch_white_led(self):
         self.white_led_state = not self.white_led_state
