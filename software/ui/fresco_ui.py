@@ -61,28 +61,31 @@ class MainUI(Frame):
         self.image_label.place(x=300, y=30)
 
         # Uncomment to debug focus measure
-        # self.fig = Figure(figsize=(5, 4), dpi=100)
-        # self.subplot = self.fig.add_subplot(111)
-        # self.subplot.plot(self.focus_measures)
-        # self.fig.set_label('Focus measure')
-
-
-        # canvas = FigureCanvasTkAgg(self.fig, master=self)
-        # canvas.draw()
-        # canvas.get_tk_widget().place(x=1700, y=50)
+        # self.init_debug_focus_measure()
 
         self.after(2000, self.update_image)
 
+    def init_debug_focus_measure(self):
+        self.fig = Figure(figsize=(5, 4), dpi=100)
+        self.subplot = self.fig.add_subplot(111)
+        self.subplot.plot(self.focus_measures)
+        self.fig.set_label('Focus measure')
+        canvas = FigureCanvasTkAgg(self.fig, master=self)
+        canvas.draw()
+        canvas.get_tk_widget().place(x=1700, y=50)
+
+    def update_debug_focus_measure(self, image_array):
+        measure = self.z_camera.get_focus_measure(image_array)
+        self.add_measure(measure)
+        self.fig.clf()
+        self.subplot = self.fig.add_subplot(111)
+        self.subplot.plot(self.focus_measures)
+        self.fig.canvas.draw()
+
     def update_image(self):
         image_array = self.fresco_camera.get_current_image()
-
         # Uncomment to debug focus measure
-        # measure = self.z_camera.get_focus_measure(image_array)
-        # self.add_measure(measure)
-        # self.fig.clf()
-        # self.subplot = self.fig.add_subplot(111)
-        # self.subplot.plot(self.focus_measures)
-        # self.fig.canvas.draw()
+        # self.update_debug_focus_measure(image_array)
 
         camera_image = ImageTk.PhotoImage(image=Image.fromarray(image_array).resize((800, 800),Image.ANTIALIAS))
         self.image_label.configure(image=camera_image)
