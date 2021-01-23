@@ -7,6 +7,7 @@
 #include "Manifold.h"
 #include "MOSFETLED.h"
 #include "DriverLED.h"
+#include "Responder.h"
 
 // Contains all motor controllers
 class FrescoXYZ {
@@ -19,6 +20,7 @@ class FrescoXYZ {
     Manifold* manifold;
     MOSFETLED* whiteLed;
     DriverLED* blueLed;
+    Responder *responder;
     
     long xLeftPostition;
     long xRightPosition;

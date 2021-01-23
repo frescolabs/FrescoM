@@ -45,12 +45,27 @@ enum CommandType {
   Unknown
 };
 
+enum ResponseType {
+  Done,
+  GetTopLeftBottomRightCoordinatesResponse,
+  UnknownCommand
+};
+
 struct Command {
   CommandType type;
   String name;
   String parameter0;
   String parameter1;
   String parameter2;
+};
+
+struct Response {
+  ResponseType type;
+  String name;
+  String parameter0;
+  String parameter1;
+  String parameter2;
+  String parameter3;
 };
 
 #endif
