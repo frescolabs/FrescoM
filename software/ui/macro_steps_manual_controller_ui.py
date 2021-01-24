@@ -55,34 +55,35 @@ class MacroStepsManualController(Frame):
         return int(self.number_of_steps_entry.get())
 
     def move_x_macro_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (self.current_step_size(), 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (self.current_step_size(), 0, 0))
 
     def move_x_macro_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (-1 * self.current_step_size(), 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (-1 * self.current_step_size(), 0, 0))
 
     def move_y_macro_left(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, self.current_step_size(), 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, self.current_step_size(), 0))
 
     def move_y_macro_right(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, -1 * self.current_step_size(), 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0,  -1 * self.current_step_size(), 0))
 
     def move_z_macro_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, -1 * self.current_step_size(), 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0,  -1 * self.current_step_size()))
 
     def move_z_macro_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, self.current_step_size(), 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, self.current_step_size()))
 
     def go_to_zero(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero, (8,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero, ())
 
     def go_to_zero_manifold(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero_manifold, (2,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_manifold, ())
 
     def go_to_zero_z(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero_z, (2,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_z, ())
 
     def move_manifold_up(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-1 * self.current_step_size(), 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-1 * self.current_step_size(),))
 
     def move_manifold_down(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (self.current_step_size(), 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (self.current_step_size(),))
+

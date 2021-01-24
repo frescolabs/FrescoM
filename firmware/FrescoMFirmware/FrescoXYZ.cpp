@@ -28,6 +28,8 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   this->yBottomPosition = -1;
   this->xLength = -1;
   this->yLength = -1;
+
+  this->responder = new Responder();
 }
 
   void FrescoXYZ::setPosition(long x, 
@@ -75,7 +77,11 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
   }
   
   void FrescoXYZ::perform(Command command) {
-
+    
+    Response response;
+    // By default is Done, every operation can change it
+    response.type = Done;
+    
     // For some reason switch doesn't work here after some cases, so had to rewrite to if / else  
     if (command.type == GoToZero) {
         this->goToZero();
@@ -109,10 +115,13 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         this->saveTopLeftPosition();
     }
     else if (command.type == GetTopLeftBottomRightCoordinates) {
-        // TODO: Move serial response to another class
         Point topLeft = this->restoreTopLeftPosition();
         Point bottomRight = this->restoreBottomRightPosition();
-        Serial.print("Response " + String(topLeft.x) + " " + String(topLeft.y) + " " + String(bottomRight.x) + " " + String(bottomRight.y) + "\n");
+        response.type = GetTopLeftBottomRightCoordinatesResponse;
+        response.parameter0 = String(topLeft.x);
+        response.parameter1 = String(topLeft.y);
+        response.parameter2 = String(bottomRight.x);
+        response.parameter3 = String(bottomRight.y);
     }
     else if (command.type == ManifoldZero) {
         this->manifold->goToZeroVerticalZ();
@@ -124,9 +133,10 @@ FrescoXYZ::FrescoXYZ(MotorController* xMotorController,
         this->blueLed->set(command.parameter0.toInt() == 1);
     }
     else if (command.type == Unknown) {
-      Serial.print("Unknown command\n");
+      response.type = UnknownCommand;
     }
-    
+
+    responder->respond(response);
   }
 
   void FrescoXYZ::saveBottomRightPosition() {
