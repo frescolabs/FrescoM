@@ -40,27 +40,27 @@ class StepsManualController(Frame):
         manifold_down_button.grid(row=3, column=4)
 
     def move_x_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (10, 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (10, 0, 0))
 
     def move_x_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (-10, 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (-10, 0, 0))
 
     def move_y_left(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 10, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 10, 0))
 
     def move_y_right(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, -10, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, -10, 0))
 
     def move_z_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, -5, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, -5))
 
     def move_z_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, 5, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, 5))
 
     def move_manifold_up(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-100, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-100, ))
 
     def move_manifold_down(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (100, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (100, ))
 
 

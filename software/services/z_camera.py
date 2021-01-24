@@ -17,20 +17,19 @@ class ZCamera:
 
     def z_step_up(self):
         delta = -1 * self.one_step
-        self.frescoXYZ.delta(0, 0, delta, 0.3)
+        self.frescoXYZ.delta(0, 0, delta)
 
     def z_step_down(self):
-        self.frescoXYZ.delta(0, 0, self.one_step, 0.3)
+        self.frescoXYZ.delta(0, 0, self.one_step)
 
     def z_step_down_number(self, number):
-        self.frescoXYZ.delta(0, 0, self.one_step * number, 1)
+        self.frescoXYZ.delta(0, 0, self.one_step * number)
 
     def z_go_to_zero(self):
-        self.frescoXYZ.go_to_zero_z(4)
+        self.frescoXYZ.go_to_zero_z()
         self.frescoXYZ.delta(0,
                              0,
-                             self.auto_focus_anchor + self.auto_focus_delta_number_of_steps / 2,
-                             4)
+                             self.auto_focus_anchor + self.auto_focus_delta_number_of_steps / 2)
 
     def update_auto_focus_anchor(self, steps):
         self.auto_focus_anchor = steps

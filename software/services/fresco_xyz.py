@@ -9,12 +9,15 @@ class FrescoXYZ:
 
     def __init__(self):
         self.serial_service = global_services.serial_service
-        print('serial service inited')
+        print('Serial service inited')
         self.topLeftPosition = (-1, -1)
         self.bottomRightPosition = (-1, -1)
 
     def send(self, message: str):
         self.serial_service.current_connection.send_message_line(message)
+
+    def execute_command(self, message: str) -> str:
+        return self.serial_service.current_connection.execute_command_sync(message)
 
     def white_led_switch(self, state):
         message = None
@@ -32,58 +35,47 @@ class FrescoXYZ:
             message = 'SwitchLedB 0'
         self.send(message)
 
-    def delta(self, x, y, z, wait_time):
+    def delta(self, x, y, z):
         message = 'Delta ' + str(x) + ' ' + str(y) + ' ' + str(z)
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def delta_pump(self, pump_index, delta, wait_time):
+    def delta_pump(self, pump_index, delta):
         message = 'DeltaPump ' + str(pump_index) + ' ' + str(delta)
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def manifold_delta(self, delta, wait_time):
+    def manifold_delta(self, delta):
         message = 'ManifoldDelta ' + str(delta)
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def set_position(self, x, y, z, wait_time):
+    def set_position(self, x, y, z):
         message = 'SetPosition ' + str(x) + ' ' + str(y) + ' ' + str(z)
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def go_to_zero(self, wait_time):
+    def go_to_zero(self):
         message = 'Zero '
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def go_to_zero_manifold(self, wait_time):
+    def go_to_zero_manifold(self):
         message = 'ManifoldZero '
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def go_to_zero_z(self, wait_time):
+    def go_to_zero_z(self):
         message = 'VerticalZero '
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def remember_top_left_position(self, wait_time):
-        self.go_to_zero_z(4)
+    def remember_top_left_position(self):
+        self.go_to_zero_z()
         message = 'RememberTopLeft '
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def remember_bottom_right_position(self, wait_time):
-        self.go_to_zero_z(4)
+    def remember_bottom_right_position(self):
+        self.go_to_zero_z()
         message = 'RememberBottomRight '
-        self.send(message)
-        time.sleep(wait_time)
+        self.execute_command(message)
 
-    def update_top_left_bottom_right(self, wait_time):
+    def update_top_left_bottom_right(self):
         message = 'GetTopLeftBottomRightCoordinates '
-        self.send(message)
-        time.sleep(wait_time)
-        coordinates_response = self.serial_service.current_connection.read_message()
+        coordinates_response = self.execute_command(message)
         tokens = coordinates_response.split(' ')
         self.topLeftPosition = (int(tokens[1]), int(tokens[2]))
         self.bottomRightPosition = (int(tokens[3]), int(tokens[4]))

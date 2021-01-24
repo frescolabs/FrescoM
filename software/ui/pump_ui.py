@@ -23,7 +23,7 @@ class Pump(Frame):
         set_position_button.place(x=0, y=70)
 
     def move_pump_forward(self):
-        _thread.start_new_thread(self.fresco_xyz.delta_pump, (self.index, 100, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta_pump, (self.index, 100))
 
     def move_pump_back(self):
-        _thread.start_new_thread(self.fresco_xyz.delta_pump, (self.index, -100, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta_pump, (self.index, -100))

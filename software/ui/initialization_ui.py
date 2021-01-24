@@ -35,20 +35,20 @@ class Initialization(Frame):
         self.plate_coordinates_label.grid(column=0, row=4, ipadx=2, pady=2, sticky=tk.W)
 
     def remember_top_left_position(self):
-        _thread.start_new_thread(self.fresco_xyz.remember_top_left_position, (5,))
+        _thread.start_new_thread(self.fresco_xyz.remember_top_left_position, ())
 
     def remember_bottom_right_position(self):
-        _thread.start_new_thread(self.fresco_xyz.remember_bottom_right_position, (5,))
+        _thread.start_new_thread(self.fresco_xyz.remember_bottom_right_position, ())
 
     def sync_plate_coordinates_async(self):
         _thread.start_new_thread(self.sync_plate_coordinates())
 
     def sync_plate_coordinates(self):
-        self.fresco_xyz.update_top_left_bottom_right(0.5)
+        self.fresco_xyz.update_top_left_bottom_right()
         coordinates_text = '({}, {}), ({}, {})'.format(str(self.fresco_xyz.topLeftPosition[0]),
-                                                     str(self.fresco_xyz.topLeftPosition[1]),
-                                                     str(self.fresco_xyz.bottomRightPosition[0]),
-                                                     str(self.fresco_xyz.bottomRightPosition[1]))
+                                                       str(self.fresco_xyz.topLeftPosition[1]),
+                                                       str(self.fresco_xyz.bottomRightPosition[0]),
+                                                       str(self.fresco_xyz.bottomRightPosition[1]))
 
         self.plate_coordinates_label.config(text=coordinates_text)
         self.plate_coordinates_label.update_idletasks()

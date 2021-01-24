@@ -46,34 +46,34 @@ class MacroStepsManualController(Frame):
         go_to_zero_z_button.grid(sticky=tk.W, row=6, column=0, columnspan=4)
 
     def move_x_macro_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (300, 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (300, 0, 0))
 
     def move_x_macro_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (-300, 0, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (-300, 0, 0))
 
     def move_y_macro_left(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 300, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 300, 0))
 
     def move_y_macro_right(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, -300, 0, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, -300, 0))
 
     def move_z_macro_up(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, -300, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, -300))
 
     def move_z_macro_down(self):
-        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, 300, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.delta, (0, 0, 300))
 
     def go_to_zero(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero, (8,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero, ())
 
     def go_to_zero_manifold(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero_manifold, (2,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_manifold, ())
 
     def go_to_zero_z(self):
-        _thread.start_new_thread(self.fresco_xyz.go_to_zero_z, (2,))
+        _thread.start_new_thread(self.fresco_xyz.go_to_zero_z, ())
 
     def move_manifold_up(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-300, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (-300,))
 
     def move_manifold_down(self):
-        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (300, 0.5))
+        _thread.start_new_thread(self.fresco_xyz.manifold_delta, (300,))

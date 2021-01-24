@@ -37,4 +37,4 @@ class SetGlobalPosition(Frame):
         print(x_value)
         print(y_value)
         #TODO: fix protocol of setting abs position (empty values)
-        _thread.start_new_thread(self.fresco_xyz.set_position, (x_value, y_value, -1000, 3))
+        _thread.start_new_thread(self.fresco_xyz.set_position, (x_value, y_value, -1000))
