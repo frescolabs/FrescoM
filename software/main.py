@@ -2,7 +2,7 @@ from services.fresco_camera import FrescoCamera
 from services.fresco_xyz import FrescoXYZ
 from services.z_camera import ZCamera
 from ui.fresco_ui import MainUI
-from tkinter import BOTH, Tk
+from tkinter import BOTH, Tk, Scrollbar
 from tkinter.ttk import Frame, Label
 
 def main():
@@ -12,6 +12,7 @@ def main():
 
     root = Tk()
     root.geometry("1800x1200+300+300")
+
     app = MainUI(fresco_xyz, z_camera, fresco_camera)
     root.mainloop()
 
