@@ -4,6 +4,7 @@ from services.focus_measure import FocusMeasure
 from services.fresco_camera import Camera
 import time
 
+
 class ZCamera:
 
     def __init__(self, fresco_xyz: FrescoXYZ, fresco_camera: Camera):

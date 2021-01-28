@@ -40,7 +40,7 @@ class MacroStepsManualController(Frame):
         self.number_of_steps_entry = tk.Entry(self)
         self.number_of_steps_entry.grid(sticky=tk.W, row=4, column=0, columnspan=4)
         # default step is 300
-        self.number_of_steps_entry.insert(tk.END, '300')
+        self.number_of_steps_entry.insert(tk.END, '1800')
 
         go_to_zero_button = tk.Button(self, text='Go to zero ZXY', command=self.go_to_zero)
         go_to_zero_button.grid(sticky=tk.W, row=5, column=0, columnspan=4)

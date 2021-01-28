@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter.ttk import Frame, Label, Combobox
-from services.serial_service import SerialService
 from services.services import global_services
 
 
@@ -9,6 +8,7 @@ class SerialConnectionView(Frame):
     def __init__(self, master):
         super().__init__(master=master, height=800, width=800)
         self.serial_service = global_services.serial_service
+        self.port_combobox: Combobox = None
         self.init_ui()
 
     def init_ui(self):
@@ -31,8 +31,8 @@ class SerialConnectionView(Frame):
     def connect(self):
         try:
             self.serial_service.create_connection(self.port_combobox.get())
-        except:
-            print('Connection error')
+        except Exception as e:
+            print('Connection error' + str(e))
 
     def disconnect(self):
         pass

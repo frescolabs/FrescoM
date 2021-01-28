@@ -6,15 +6,22 @@ from services.z_camera import ZCamera
 from ui.set_global_position_ui import SetGlobalPosition
 from ui.pumps_ui import Pumps
 from ui.save_image_ui import SaveImage
-import _thread
+from ui.all_wells_photo_protocol_ui import AllWellsPhotoUI
+from ui.protocols_performer_ui import ProtocolsPerformerUI
+from services.protocols_performer import ProtocolsPerformer
 
 
 class Functions(Frame):
 
-    def __init__(self, master, fresco_xyz: FrescoXYZ, z_camera: ZCamera):
+    def __init__(self,
+                 master,
+                 fresco_xyz: FrescoXYZ,
+                 z_camera: ZCamera,
+                 protocols_performer: ProtocolsPerformer):
         super().__init__(master=master, height=500, width=500)
         self.fresco_xyz = fresco_xyz
         self.z_camera = z_camera
+        self.protocols_performer = protocols_performer
         self.init_ui()
         self.white_led_state = False
         self.blue_led_state = False
@@ -30,7 +37,7 @@ class Functions(Frame):
         save_current_image_button = tk.Button(self, text='Save current image', command=self.save_current_image)
         save_current_image_button.grid(column=0, row=2, ipadx=2, pady=2, sticky=tk.W)
 
-        all_wells_photo_button = tk.Button(self, text='All wells photo')
+        all_wells_photo_button = tk.Button(self, text='All wells photo', command=self.open_all_wells_photo_ui)
         all_wells_photo_button.grid(column=0, row=3, ipadx=2, pady=2, sticky=tk.W)
 
         white_led_button = tk.Button(self, text='White LED on / off',
@@ -43,6 +50,11 @@ class Functions(Frame):
 
         pumps_button = tk.Button(self, text='Pumps', command=self.open_pumps)
         pumps_button.grid(column=0, row=6, ipadx=2, pady=2, sticky=tk.W)
+
+        protocols_performer_button = tk.Button(self,
+                                               text='Protocols performer',
+                                               command=self.open_protocols_performer())
+        protocols_performer_button.grid(column=0, row=7, ipadx=2, pady=2, sticky=tk.W)
 
     def switch_white_led(self):
         self.white_led_state = not self.white_led_state
@@ -71,3 +83,15 @@ class Functions(Frame):
         new_window.title("Image")
         new_window.geometry("800x800")
         SaveImage(new_window, image=image).pack()
+
+    def open_all_wells_photo_ui(self):
+        new_window = Toplevel(self)
+        new_window.title("All wells photo")
+        new_window.geometry("400x250")
+        AllWellsPhotoUI(new_window, fresco_xyz=self.fresco_xyz, z_camera=self.z_camera).pack()
+
+    def open_protocols_performer(self):
+        new_window = Toplevel(self)
+        new_window.title("Protocols performer")
+        new_window.geometry("400x250")
+        ProtocolsPerformerUI(new_window, protocols_performer=self.protocols_performer).pack()
