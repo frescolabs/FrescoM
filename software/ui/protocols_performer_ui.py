@@ -20,7 +20,7 @@ class ProtocolsPerformerUI(Frame):
         self.protocols_combobox.current(0)
         self.protocols_combobox.pack()
 
-        start_button = tk.Button(self, text='Start protocol', command=self.start_protocol)
+        start_button = tk.Button(self, text='Run protocol', command=self.start_protocol)
         start_button.pack()
 
     def start_protocol(self):

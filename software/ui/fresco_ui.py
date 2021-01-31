@@ -16,8 +16,7 @@ from ui.auto_focus_ui import AutoFocus
 from ui.functions_ui import Functions
 from ui.serial_connection_ui import SerialConnectionView
 
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg)
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 from matplotlib.figure import Figure
 
 
@@ -31,6 +30,11 @@ class MainUI(Frame):
         self.image_label = None
         self.number_of_focus_measures_to_show = 50
         self.focus_measures = [0]
+
+        # debug
+        self.subplot = None
+        self.figure = None
+
         self.init_ui()
 
     def init_ui(self):
@@ -57,14 +61,15 @@ class MainUI(Frame):
         functions_controller = Functions(self,
                                          fresco_xyz=self.fresco_xyz,
                                          z_camera=self.z_camera,
-                                         protocols_performer=protocols_performer)
+                                         protocols_performer=protocols_performer,
+                                         images_storage=images_storage)
         functions_controller.place(x=0, y=560)
 
-        serial_port_controll_button = tk.Button(self, text='Serial', command=self.open_serial_connection_ui)
-        serial_port_controll_button.place(x=300, y=0)
+        serial_port_control_button = tk.Button(self, text='Serial', command=self.open_serial_connection_ui)
+        serial_port_control_button.place(x=300, y=0)
 
         image_array = self.fresco_camera.get_current_image()
-        camera_image = ImageTk.PhotoImage(image=Image.fromarray(image_array).resize((800, 800),Image.ANTIALIAS))
+        camera_image = ImageTk.PhotoImage(image=Image.fromarray(image_array).resize((800, 800), Image.ANTIALIAS))
         self.image_label = Label(self, image=camera_image)
         self.image_label.image = camera_image
         self.image_label.place(x=300, y=30)
@@ -93,6 +98,7 @@ class MainUI(Frame):
 
     def update_image(self):
         image_array = self.fresco_camera.get_current_image()
+
         # Uncomment to debug focus measure
         # self.update_debug_focus_measure(image_array)
 

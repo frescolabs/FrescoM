@@ -1,13 +1,13 @@
 import operator
 from services.fresco_xyz import FrescoXYZ
 from services.focus_measure import FocusMeasure
-from services.fresco_camera import Camera
+from services.fresco_camera import FrescoCamera
 import time
 
 
 class ZCamera:
 
-    def __init__(self, fresco_xyz: FrescoXYZ, fresco_camera: Camera):
+    def __init__(self, fresco_xyz: FrescoXYZ, fresco_camera: FrescoCamera):
         self.frescoXYZ = fresco_xyz
         self.fresco_camera = fresco_camera
         self.focus_measure = FocusMeasure()
@@ -51,7 +51,7 @@ class ZCamera:
             self.z_step_up()
             time.sleep(0.2)
         max_index, max_value = max(enumerate(focus_measure_data_points), key=operator.itemgetter(1))
-        number_of_steps_back = self.auto_focus_delta_number_of_steps - max_index + 2
+        number_of_steps_back = self.auto_focus_delta_number_of_steps - max_index
         self.z_step_down_number(number_of_steps_back)
 
     def get_focus_measure(self, pixels_array):

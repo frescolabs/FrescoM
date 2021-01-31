@@ -1,6 +1,4 @@
-from services.serial_service import SerialService
 from services.services import global_services
-import time
 
 
 class FrescoXYZ:
