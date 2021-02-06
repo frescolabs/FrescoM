@@ -44,13 +44,17 @@ class ZCamera:
         # first focus attempt with big steps
         measure_1, steps_1 = self.find_offset_for_best_measure(one_jump_size=self.one_jump,
                                                                delta_jumps=self.auto_focus_delta_number_of_jumps)
+        print('measure_1 = ' + str(measure_1))
+        print('steps_1 = ' + str(steps_1))
         self.frescoXYZ.delta(0, 0, steps_1)
-        delta_jumps_2 = 20
+        delta_jumps_2 = 10
         jump_size_2 = 2
         self.frescoXYZ.delta(0, 0, (delta_jumps_2 * jump_size_2) / 2)
         # second focus attempt with small steps
         measure_2, steps_2 = self.find_offset_for_best_measure(one_jump_size=jump_size_2,
                                                                delta_jumps=delta_jumps_2)
+        print('measure_2 = ' + str(measure_2))
+        print('steps_2 = ' + str(steps_2))
         self.frescoXYZ.delta(0, 0, steps_2)
 
     # starts to find the best focus measure from current position within delta making one_jump_size.
@@ -68,6 +72,6 @@ class ZCamera:
         return max_value, number_of_steps_back
 
     def get_focus_measure(self, pixels_array):
-        measure = self.focus_measure.TENG(pixels_array)
+        measure = self.focus_measure.measure(pixels_array)
         return measure
 

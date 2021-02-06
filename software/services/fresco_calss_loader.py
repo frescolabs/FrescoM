@@ -2,7 +2,6 @@
 
 class FrescoClassLoader:
 
-
     def import_class(self, path: str):
         dot_components = path.split('.')
         components = dot_components[1].split('/')
