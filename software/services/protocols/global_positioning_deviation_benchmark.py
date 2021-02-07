@@ -20,7 +20,7 @@ class GlobalPositioningDeviationBenchmark(BaseProtocol):
                                                                   images_storage=images_storage)
         self.images_storage = images_storage
         self.manifold_offset = 5050  # todo: setup actual number
-        self.number_of_measurements = 3
+        self.number_of_measurements = 100
         self.corner_prefix = '_corner_'
         self.images_difference = ImagesDifferenceService()
 
@@ -90,14 +90,13 @@ class GlobalPositioningDeviationBenchmark(BaseProtocol):
             all_differences_2.append({'image_1': pair[0], 'image_2': pair[1], 'diff': diff})
 
         # find the biggest difference in each group
+        # find the average difference in each group
         sequence_1 = [x['diff'] for x in all_differences_1]
         max_error_1 = max(sequence_1)
         average_error_1 = sum(sequence_1) / len(sequence_1)
         sequence_2 = [x['diff'] for x in all_differences_2]
         max_error_2 = max(sequence_2)
         average_error_2 = sum(sequence_2) / len(sequence_2)
-
-        # find the average difference in each group
 
         # create average image of each group
         report_json = { '1_well': all_differences_1,
@@ -110,6 +109,4 @@ class GlobalPositioningDeviationBenchmark(BaseProtocol):
         # save the report into a file
         with open(folder_path + '/report.json', 'w') as fp:
             json.dump(report_json, fp)
-
-        # generate example images and save (homography image, line on one of the images)
 
