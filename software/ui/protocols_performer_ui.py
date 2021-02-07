@@ -1,6 +1,6 @@
 import tkinter as tk
 from services.protocols_performer import ProtocolsPerformer
-from tkinter.ttk import Frame, Label, Combobox
+from tkinter.ttk import Frame, Combobox
 import _thread
 
 

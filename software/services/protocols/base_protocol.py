@@ -4,7 +4,7 @@ from services.images_storage import ImagesStorage
 import time
 
 
-class BaseProtocol():
+class BaseProtocol:
 
     def __init__(self,
                  fresco_xyz: FrescoXYZ,

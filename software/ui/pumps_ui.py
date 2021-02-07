@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter.ttk import Frame, Label
 from services.fresco_xyz import FrescoXYZ
 from ui.pump_ui import Pump
-import _thread
 
 
 class Pumps(Frame):
