@@ -11,8 +11,8 @@ class ZCamera:
         self.frescoXYZ = fresco_xyz
         self.fresco_camera = fresco_camera
         self.focus_measure = FocusMeasure()
-        self.auto_focus_anchor = -9670 # TODO: save from machine state and update
-        self.auto_focus_delta_number_of_jumps = 20
+        self.auto_focus_anchor = -9690 # TODO: save from machine state and update
+        self.auto_focus_delta_number_of_jumps = 30
         self.one_jump = 5
         self.current_position = None
 
