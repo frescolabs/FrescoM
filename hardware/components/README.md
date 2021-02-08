@@ -66,6 +66,9 @@ https://www.amazon.co.uk/gp/product/B07FCR8W2H/ref=ppx_yo_dt_b_search_asin_title
 
 ![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/LED_W_3V_X4.JPG?raw=true)
 
+20. MakerBeam XL (+- 111 GBP)
+https://www.amazon.co.uk/gp/product/B06XHXJSVL/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
 
+![alt frescoa photo](https://github.com/frescolabs/FrescoM/blob/master/media/MakerBeam_XL.JPG?raw=true)
 
 
