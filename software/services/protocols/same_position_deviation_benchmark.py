@@ -13,8 +13,7 @@ class SamePositionDeviationBenchmark(BaseProtocol):
     def __init__(self,
                  fresco_xyz: FrescoXYZ,
                  z_camera: ZCamera,
-                 images_storage: ImagesStorage
-                 ):
+                 images_storage: ImagesStorage):
         super(SamePositionDeviationBenchmark, self).__init__(fresco_xyz=fresco_xyz,
                                                              z_camera=z_camera,
                                                              images_storage=images_storage)
@@ -65,11 +64,13 @@ class SamePositionDeviationBenchmark(BaseProtocol):
         sequence = [x['diff'] for x in all_differences]
         max_error = max(sequence)
         average_error = sum(sequence) / len(sequence)
+        standard_deviation = np.std(sequence)
 
-        report_json = { 'differences': all_differences,
-                        'max_error': str(max_error),
-                        'average_error': str(average_error),
-                        'number_of_measurements': self.number_of_measurements}
+        report_json = {'differences': all_differences,
+                       'max_error': str(max_error),
+                       'average_error': str(average_error),
+                       'standard_deviation': str(standard_deviation),
+                       'number_of_measurements': self.number_of_measurements}
         # save the report into a file
         with open(folder_path + '/report.json', 'w') as fp:
             json.dump(report_json, fp)

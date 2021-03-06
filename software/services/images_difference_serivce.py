@@ -24,14 +24,14 @@ class ImagesDifferenceService:
 
         src_pts = np.float32([key_points_1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         dst_pts = np.float32([key_points_2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
-        transformation, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
-        matches_mask = mask.ravel().tolist()
         h, w = image_1.shape
-        pts = np.float32([[0, 0],
-                          [0, h - 1],
-                          [w - 1, h - 1],
-                          [w - 1, 0]]).reshape(-1, 1, 2)
         try:
+            transformation, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
+            pts = np.float32([[0, 0],
+                              [0, h - 1],
+                              [w - 1, h - 1],
+                              [w - 1, 0]]).reshape(-1, 1, 2)
+
             destination = cv.perspectiveTransform(pts, transformation)
             x = np.float64(destination[0][0][0])
             y = np.float64(destination[0][0][1])

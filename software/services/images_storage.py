@@ -11,6 +11,10 @@ class ImagesStorage:
         if not os.path.exists(self.storage_root_path):
             os.makedirs(self.storage_root_path)
 
+    def create_folder(self, path):
+        if not os.path.exists(path):
+            os.makedirs(path)
+
     def save(self, image, name):
         pil_image = Image.fromarray(image)
         pil_image.save(name)
