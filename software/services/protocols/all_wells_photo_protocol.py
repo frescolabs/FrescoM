@@ -25,8 +25,8 @@ class AllWellsPhotoProtocol(BaseProtocol):
         self.fresco_xyz.go_to_zero_manifold()
         session_folder_path = self.images_storage.create_new_session_folder()
         print('Folder ' + session_folder_path)
-        for column_number in range(0, self.plate_size_98[1] - 1):
-            for row_number in range(0, self.plate_size_98[0] - 1):
+        for column_number in range(0, self.plate_size_96[1] - 1):
+            for row_number in range(0, self.plate_size_96[0] - 1):
                 self.z_camera.focus_on_current_object()
                 self.hold_position(1)
                 image_before_solution = self.z_camera.fresco_camera.get_current_image()
@@ -41,6 +41,6 @@ class AllWellsPhotoProtocol(BaseProtocol):
                 image_after_solution = self.z_camera.fresco_camera.get_current_image()
                 self.images_storage.save(image_after_solution,
                                          session_folder_path + '/' + 'PI_a_' + str(row_number) + '_' + str(column_number) + '.png')
-                self.fresco_xyz.delta(-1 * self.well_step_98, 0, 0)
-            self.fresco_xyz.delta(self.well_step_98 * (self.plate_size_98[0] - 1), 0, 0)
-            self.fresco_xyz.delta(0, -1 * self.well_step_98, 0)
+                self.fresco_xyz.delta(-1 * self.well_step_96, 0, 0)
+            self.fresco_xyz.delta(self.well_step_96 * (self.plate_size_96[0] - 1), 0, 0)
+            self.fresco_xyz.delta(0, -1 * self.well_step_96, 0)

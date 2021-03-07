@@ -16,8 +16,8 @@ class BaseProtocol:
         number_of_steps_in_2_pi = 200 * 8
         rod_length_for_one_rotation = 8.0  # in mm
         distance_between_well_centers = 9.0  # in mm
-        self.well_step_98 = (distance_between_well_centers / rod_length_for_one_rotation) * number_of_steps_in_2_pi  # todo: fix, calculate in a more smart way (1800)
-        self.plate_size_98 = (12, 8)
+        self.well_step_96 = (distance_between_well_centers / rod_length_for_one_rotation) * number_of_steps_in_2_pi  # todo: fix, calculate in a more smart way (1800)
+        self.plate_size_96 = (12, 8)
 
     def perform(self):
         pass

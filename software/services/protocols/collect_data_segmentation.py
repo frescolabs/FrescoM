@@ -56,9 +56,18 @@ class CollectDataSegmentation(BaseProtocol):
         self.fresco_xyz.white_led_switch(True)
         self.fresco_xyz.go_to_zero_manifold()
         session_folder_path = self.images_storage.create_new_session_folder()
+        # not all wells (- 2) because of incorrectly designed plate holder
+        for column_number in range(0, self.plate_size_96[1] - 2):
+            for row_number in range(0, self.plate_size_96[0] - 2):
+                one_well_folder = session_folder_path + '/' + str(column_number) + '_' + str(row_number)
+                self.images_storage.create_folder(one_well_folder)
+                self.perform_for_one_well(one_well_folder)
+            self.fresco_xyz.delta(self.well_step_96 * (self.plate_size_96[0] - 1), 0, 0)
+            self.fresco_xyz.delta(0, -1 * self.well_step_96, 0)
+
+    def perform_for_one_well(self, well_folder_path):
         offsets, coordinates = self.generate_quadratic_spiral_offsets()
-        self.save_coordinates(session_folder_path, coordinates)
-        jump_size = 5
+        self.save_coordinates(well_folder_path, coordinates)
         image_index = 0
         for offset in offsets:
             print('x offset = ' + str(offset[0]) + ' y offset = ' + str(offset[1]))
@@ -66,7 +75,7 @@ class CollectDataSegmentation(BaseProtocol):
             self.z_camera.focus_on_current_object()
             self.hold_position(0.3)
             image = self.z_camera.fresco_camera.get_current_image()
-            self.images_storage.save(image, session_folder_path + '/' + self.image_prefix + str(image_index) + '.png')
+            self.images_storage.save(image, well_folder_path + '/' + self.image_prefix + str(image_index) + '.png')
             self.hold_position(0.3)
             # White LED offset randomization
             self.fresco_xyz.go_to_zero_manifold()

@@ -37,7 +37,7 @@ class GlobalPositioningDeviationBenchmark(BaseProtocol):
                                          well_index=1,
                                          measurement_index=measurement_index)
             self.images_storage.save(image_1, path_1)
-            self.fresco_xyz.delta(-7 * self.well_step_98, -7 * self.well_step_98, 0)
+            self.fresco_xyz.delta(-7 * self.well_step_96, -7 * self.well_step_96, 0)
             self.hold_position(1)
             self.z_camera.focus_on_current_object()
             self.hold_position(1)
@@ -46,7 +46,7 @@ class GlobalPositioningDeviationBenchmark(BaseProtocol):
                                          well_index=2,
                                          measurement_index=measurement_index)
             self.images_storage.save(image_2, path_2)
-            self.fresco_xyz.delta(7 * self.well_step_98, 7 * self.well_step_98, 0)
+            self.fresco_xyz.delta(7 * self.well_step_96, 7 * self.well_step_96, 0)
         self.create_report(folder_path=session_folder_path)
 
     def path_for_image(self, folder_path: str, well_index: int, measurement_index: int) -> str:

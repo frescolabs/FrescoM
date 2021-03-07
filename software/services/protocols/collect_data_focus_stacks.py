@@ -21,6 +21,8 @@ class CollectDataFocusStacks(BaseProtocol):
         self.stack_size = 30
         self.image_prefix = 'S_'
 
+    # generates spiral pattern to get XY locations for one well imaging
+    # (might be changed to another: see collect_data_segmentation.py)
     def generate_spiral_offsets(self) -> ([(int, int)], [int, int]):
         approximate_well_radius = 800
         radius_offset = approximate_well_radius / self.number_of_stacks
@@ -48,8 +50,20 @@ class CollectDataFocusStacks(BaseProtocol):
         self.fresco_xyz.white_led_switch(True)
         self.fresco_xyz.go_to_zero_manifold()
         session_folder_path = self.images_storage.create_new_session_folder()
+        self.perform_for_one_well(session_folder_path)
+        # not all wells (- 2) because of incorrectly designed plate holder
+        for column_number in range(0, self.plate_size_96[1] - 2):
+            for row_number in range(0, self.plate_size_96[0] - 2):
+                one_well_folder = session_folder_path + '/' + str(column_number) + '_' + str(row_number)
+                self.images_storage.create_folder(one_well_folder)
+                self.perform_for_one_well(one_well_folder)
+            self.fresco_xyz.delta(self.well_step_96 * (self.plate_size_96[0] - 1), 0, 0)
+            self.fresco_xyz.delta(0, -1 * self.well_step_96, 0)
+
+    # creates images for one well
+    def perform_for_one_well(self, well_folder_path):
         offsets, coordinates = self.generate_spiral_offsets()
-        self.save_coordinates(session_folder_path, coordinates)
+        self.save_coordinates(well_folder_path, coordinates)
         jump_size = 5
         index = 0
         for offset in offsets:
@@ -58,7 +72,7 @@ class CollectDataFocusStacks(BaseProtocol):
             self.z_camera.focus_on_current_object()
             self.fresco_xyz.delta(0, 0, jump_size * random.randint(0, self.stack_size))
             for image_index in range(0, self.stack_size):
-                stack_folder = session_folder_path + '/' + str(index)
+                stack_folder = well_folder_path + '/' + str(index)
                 self.images_storage.create_folder(stack_folder)
                 self.fresco_xyz.delta(0, 0, -1 * jump_size)
                 self.hold_position(0.3)
