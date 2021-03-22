@@ -1,5 +1,13 @@
 import cv2
 import numpy
+from enum import Enum
+
+
+class Measure(Enum):
+    LAPV = 1
+    LAPM = 2
+    MLOG = 3
+    TENG = 4
 
 
 class FocusMeasure:
@@ -23,5 +31,14 @@ class FocusMeasure:
         return numpy.mean(numpy.sqrt(gaussian_x * gaussian_x +
                                      gaussian_y * gaussian_y))
 
-    def measure(self, image):
-        return self.MLOG(image=image)
+    def measure(self, image, measure=Measure.TENG):
+        number = 0
+        if measure == Measure.TENG:
+            number = self.TENG(image)
+        elif measure == Measure.LAPM:
+            number = self.LAPM(image)
+        elif measure == Measure.LAPV:
+            number = self.LAPV(image)
+        elif measure == Measure.MLOG:
+            number = self.MLOG(image)
+        return number
