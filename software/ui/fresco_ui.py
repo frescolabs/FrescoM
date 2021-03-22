@@ -6,6 +6,7 @@ from services.z_camera import ZCamera
 from services.fresco_camera import FrescoCamera
 from services.protocols_performer import ProtocolsPerformer
 from services.images_storage import ImagesStorage
+from services.image_processor import ImageProcessor
 from PIL import Image, ImageTk
 from tkinter import Toplevel
 
@@ -22,7 +23,10 @@ from matplotlib.figure import Figure
 
 class MainUI(Frame):
 
-    def __init__(self, fresco_xyz: FrescoXYZ, z_camera: ZCamera, fresco_camera: FrescoCamera):
+    def __init__(self,
+                 fresco_xyz: FrescoXYZ,
+                 z_camera: ZCamera,
+                 fresco_camera: FrescoCamera):
         super().__init__()
         self.fresco_xyz = fresco_xyz
         self.z_camera = z_camera
@@ -77,7 +81,7 @@ class MainUI(Frame):
         # Uncomment to debug focus measure
         # self.init_debug_focus_measure()
 
-        self.after(2000, self.update_image)
+        self.after(100, self.update_image)
 
     def init_debug_focus_measure(self):
         self.figure = Figure(figsize=(5, 4), dpi=100)
@@ -102,11 +106,12 @@ class MainUI(Frame):
         # Uncomment to debug focus measure
         # self.update_debug_focus_measure(image_array)
 
-        camera_image = ImageTk.PhotoImage(image=Image.fromarray(image_array).resize((800, 800),Image.ANTIALIAS))
+        camera_image = ImageTk\
+            .PhotoImage(image=Image.fromarray(image_array).resize((800, 800), Image.ANTIALIAS))
         self.image_label.configure(image=camera_image)
         self.image_label.image = camera_image
 
-        self.after(100, self.update_image)
+        self.after(20, self.update_image)
 
     def add_measure(self, measure):
         if len(self.focus_measures) >= self.number_of_focus_measures_to_show:
