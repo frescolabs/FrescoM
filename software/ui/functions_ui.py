@@ -30,6 +30,7 @@ class Functions(Frame):
         self.init_ui()
         self.white_led_state = False
         self.blue_led_state = False
+        self.autocorrect_contrast = False
 
     def init_ui(self):
         xyz_label = Label(self, text='Functions')
@@ -62,6 +63,11 @@ class Functions(Frame):
                                     text='Exposure',
                                     command=self.open_exposure)
         exposure_button.grid(column=0, row=7, ipadx=2, pady=2, sticky=tk.W)
+
+        contrast_button = tk.Button(self,
+                                    text='Contrast',
+                                    command=self.set_contrast)
+        contrast_button.grid(column=0, row=8, ipadx=2, pady=2, sticky=tk.W)
 
     def switch_white_led(self):
         self.white_led_state = not self.white_led_state
@@ -102,3 +108,7 @@ class Functions(Frame):
         new_window.title("Exposure")
         new_window.geometry("400x250")
         ExposureUI(new_window, z_camera=self.z_camera).pack()
+
+    def set_contrast(self):
+        self.autocorrect_contrast = not self.autocorrect_contrast
+        self.z_camera.fresco_camera.set_autocorrect_contrast(self.autocorrect_contrast)
