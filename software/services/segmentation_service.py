@@ -26,3 +26,13 @@ class SegmentationService:
         plot.show_segmentation(fig, img, masks, flows[0], channels=channel)
         plt.tight_layout()
         plt.show()
+
+    def masks_from_image(self, image, diameter):
+        model = models.Cellpose(gpu=False, model_type='cyto')
+        channel = [0, 0]
+        masks, flows, styles, diams = model.eval(image, diameter=diameter, channels=channel)
+        fig = plt.figure(figsize=(12, 5))
+        plot.show_segmentation(fig, image, masks, flows[0], channels=channel)
+        plt.tight_layout()
+        plt.show()
+        return masks
